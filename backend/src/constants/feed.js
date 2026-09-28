@@ -1,0 +1,1 @@
+export const MAX_GRAM_PER_EKOR = 200;

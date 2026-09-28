@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS  —  Modern SaaS · Soft White · Natural Green
+   ============================================================ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+
+  /* Surfaces & text */
+  --color-canvas: #eef1f5;
+  --color-surface: #ffffff;
+  --color-ink: #1b2430;
+  --color-muted: #667085;
+  --color-faint: #98a2b3;
+  --color-line: #e8ebf1;
+  --color-line-strong: #dfe3ea;
+
+  /* Natural green brand scale */
+  --color-brand-50: #edfaf2;
+  --color-brand-100: #d4f3e0;
+  --color-brand-200: #ace6c4;
+  --color-brand-300: #78d3a3;
+  --color-brand-400: #42b97e;
+  --color-brand-500: #1f9d61;
+  --color-brand-600: #15854e;
+  --color-brand-700: #11673e;
+  --color-brand-800: #124f34;
+
+  /* Accent tones for stat tiles / charts */
+  --color-amber-soft: #fbf1dc;
+  --color-amber-ink: #b9832a;
+  --color-sky-soft: #e8f0fb;
+  --color-sky-ink: #3f74c9;
+  --color-rose-soft: #fdecec;
+  --color-rose-ink: #dc5b5b;
+
+  /* Egg grades */
+  --color-grade-bagus: #2fa563;
+  --color-grade-krem: #e3bd76;
+  --color-grade-retak: #ef6a6a;
+
+  /* Trend deltas */
+  --color-up: #1a8f52;
+  --color-down: #d9534f;
+
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+  --radius-3xl: 1.375rem;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04),
+    0 8px 24px -12px rgba(16, 24, 40, 0.12);
+  --shadow-pop: 0 12px 40px -12px rgba(16, 24, 40, 0.22);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-canvas);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: var(--color-brand-200);
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.018em;
+  }
+}
+
+@layer components {
+  .card {
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
+  }
+
+  .field-input {
+    width: 100%;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-line-strong);
+    background: var(--color-surface);
+    padding: 0.6rem 0.85rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    transition:
+      border-color 0.15s var(--ease-out-soft),
+      box-shadow 0.15s var(--ease-out-soft);
+  }
+
+  .field-input::placeholder {
+    color: var(--color-faint);
+  }
+
+  .field-input:hover {
+    border-color: #cfd5de;
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-brand-400);
+    box-shadow: 0 0 0 3px var(--color-brand-100);
+  }
+
+  .field-input:disabled,
+  .field-input[readonly] {
+    background: #f4f6f8;
+    color: var(--color-muted);
+    cursor: not-allowed;
+  }
+}
+
+@utility scrollbar-slim {
+  scrollbar-width: thin;
+  scrollbar-color: #cdd4de transparent;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cdd4de;
+    border-radius: 999px;
+  }
+}
+
+@keyframes sp-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sp-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  aside,
+  .print\:hidden {
+    display: none !important;
+  }
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .card {
+    box-shadow: none !important;
+    border-color: #e5e7eb !important;
+    break-inside: avoid;
+  }
+}

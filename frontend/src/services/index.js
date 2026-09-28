@@ -1,0 +1,9 @@
+export { authService } from "./auth.service";
+export { periodeService } from "./periode.service";
+export { produksiService } from "./produksi.service";
+export { feedService } from "./feed.service";
+export { mortalitasService } from "./mortalitas.service";
+export { vaksinasiService } from "./vaksinasi.service";
+export { kandangService } from "./kandang.service";
+export { userService } from "./user.service";
+export { masterService } from "./master.service";
