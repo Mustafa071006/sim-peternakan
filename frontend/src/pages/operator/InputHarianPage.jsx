@@ -19,7 +19,7 @@ import { Button } from "../../components/ui/Button";
 import { Badge } from "../../components/ui/Badge";
 import { TextField, SelectField } from "../../components/ui/Field";
 import { EmptyState, ErrorState } from "../../components/ui/States";
-import { Skeleton } from "../../components/ui/Skeleton";
+import { InputHarianSkeleton } from "../../components/skeletons/PageSkeletons";
 import { ConfirmDialog } from "../../components/ui/Modal";
 import { toast } from "../../components/ui/toast";
 import { useActivePeriode } from "../../hooks/usePeriode";
@@ -185,11 +185,7 @@ export default function InputHarianPage() {
     return (
       <div className="space-y-6">
         {header}
-        <Skeleton className="h-24 rounded-2xl" />
-        <div className="grid gap-4 lg:grid-cols-3">
-          <Skeleton className="h-64 rounded-2xl lg:col-span-2" />
-          <Skeleton className="h-64 rounded-2xl" />
-        </div>
+        <InputHarianSkeleton />
       </div>
     );
   }
@@ -573,7 +569,7 @@ export default function InputHarianPage() {
       </div>
 
       {/* Footer actions */}
-      <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+      <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
         <Button variant="outline" icon={RotateCcw} onClick={resetForm}>
           Reset
         </Button>

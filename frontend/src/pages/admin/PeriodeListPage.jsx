@@ -10,6 +10,7 @@ import { DataTable } from "../../components/ui/DataTable";
 import { Pagination } from "../../components/ui/Pagination";
 import { SearchInput } from "../../components/ui/SearchInput";
 import { ErrorState } from "../../components/ui/States";
+import { StatRowSkeleton } from "../../components/skeletons/PageSkeletons";
 import { usePeriodeList } from "../../hooks/usePeriode";
 import { useDebounce } from "../../hooks/useDebounce";
 import { formatDate, formatInt } from "../../utils/format";
@@ -118,13 +119,11 @@ export default function PeriodeListPage() {
     <PageHeader
       title="Manajemen Periode"
       description="Pantau dan mulai periode produksi di seluruh kandang."
-      aside={
-        <div className="flex items-center gap-2">
-          <DatePill />
-          <Button icon={Plus} onClick={() => setFormOpen(true)}>
-            Tambah Periode
-          </Button>
-        </div>
+      aside={<DatePill />}
+      actions={
+        <Button icon={Plus} onClick={() => setFormOpen(true)}>
+          Tambah Periode
+        </Button>
       }
     />
   );
@@ -144,18 +143,22 @@ export default function PeriodeListPage() {
     <div className="space-y-6">
       {header}
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Total Periode" value={formatInt(stats.total)} icon={CalendarRange} tone="green" />
-        <StatCard label="Sedang Berjalan" value={formatInt(stats.aktif)} icon={CircleDashed} tone="sky" />
-        <StatCard label="Selesai" value={formatInt(stats.selesai)} icon={CheckCircle2} tone="amber" />
-        <StatCard
-          label="Total Populasi Aktif"
-          value={formatInt(stats.populasiAktif)}
-          unit="ekor"
-          icon={Users}
-          tone="rose"
-        />
-      </div>
+      {periodeQ.isLoading ? (
+        <StatRowSkeleton />
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <StatCard label="Total Periode" value={formatInt(stats.total)} icon={CalendarRange} tone="green" />
+          <StatCard label="Sedang Berjalan" value={formatInt(stats.aktif)} icon={CircleDashed} tone="sky" />
+          <StatCard label="Selesai" value={formatInt(stats.selesai)} icon={CheckCircle2} tone="amber" />
+          <StatCard
+            label="Total Populasi Aktif"
+            value={formatInt(stats.populasiAktif)}
+            unit="ekor"
+            icon={Users}
+            tone="rose"
+          />
+        </div>
+      )}
 
       <Card className="p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

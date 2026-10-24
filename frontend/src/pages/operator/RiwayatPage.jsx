@@ -20,7 +20,7 @@ import { DataTable } from "../../components/ui/DataTable";
 import { Pagination } from "../../components/ui/Pagination";
 import { SearchInput } from "../../components/ui/SearchInput";
 import { EmptyState, ErrorState } from "../../components/ui/States";
-import { Skeleton } from "../../components/ui/Skeleton";
+import { RiwayatSkeleton } from "../../components/skeletons/PageSkeletons";
 import { useActivePeriode } from "../../hooks/usePeriode";
 import { useDailyLog } from "../../features/riwayat/useDailyLog";
 import { downloadCsv } from "../../utils/export";
@@ -131,8 +131,7 @@ export default function RiwayatPage() {
     return (
       <div className="space-y-6">
         {header}
-        <Skeleton className="h-24 rounded-2xl" />
-        <Skeleton className="h-96 rounded-2xl" />
+        <RiwayatSkeleton />
       </div>
     );
   }
@@ -321,12 +320,12 @@ export default function RiwayatPage() {
             ))}
           </select>
         </div>
-        <div className="flex items-end gap-2">
-          <Button icon={Filter} onClick={applyFilter}>
-            Terapkan Filter
-          </Button>
+        <div className="flex items-end justify-end gap-2">
           <Button variant="outline" icon={RotateCcw} onClick={resetFilter}>
             Reset
+          </Button>
+          <Button icon={Filter} onClick={applyFilter}>
+            Terapkan Filter
           </Button>
         </div>
       </Card>

@@ -65,7 +65,7 @@ export function DataTable({
             rows.map((row, i) => (
               <tr
                 key={rowKey(row, i)}
-                className="border-b border-line/70 transition-colors last:border-0 hover:bg-canvas/60"
+                className="border-b border-line/70 transition-colors duration-150 animate-[sp-fade-in_0.18s_ease-out] last:border-0 hover:bg-canvas/60"
               >
                 {columns.map((col) => (
                   <td

@@ -21,6 +21,7 @@ import { DropdownMenu } from "../../components/ui/DropdownMenu";
 import { ConfirmDialog } from "../../components/ui/Modal";
 import { toast } from "../../components/ui/toast";
 import { ErrorState } from "../../components/ui/States";
+import { StatRowSkeleton } from "../../components/skeletons/PageSkeletons";
 import { useKandangList, useSetKandangStatus } from "../../hooks/useKandang";
 import { useDebounce } from "../../hooks/useDebounce";
 import { getErrorMessage } from "../../lib/http";
@@ -130,13 +131,11 @@ export default function KandangListPage() {
     <PageHeader
       title="Manajemen Kandang"
       description="Buat kandang dan tugaskan operator. Satu kandang bisa punya lebih dari satu operator (backup)."
-      aside={
-        <div className="flex items-center gap-2">
-          <DatePill />
-          <Button icon={Plus} onClick={() => setFormOpen(true)}>
-            Tambah Kandang
-          </Button>
-        </div>
+      aside={<DatePill />}
+      actions={
+        <Button icon={Plus} onClick={() => setFormOpen(true)}>
+          Tambah Kandang
+        </Button>
       }
     />
   );
@@ -156,17 +155,21 @@ export default function KandangListPage() {
     <div className="space-y-6">
       {header}
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Total Kandang" value={formatInt(stats.total)} icon={Warehouse} tone="green" />
-        <StatCard label="Kandang Aktif" value={formatInt(stats.aktif)} icon={Layers} tone="sky" />
-        <StatCard label="Kandang Nonaktif" value={formatInt(stats.nonaktif)} icon={PowerOff} tone="amber" />
-        <StatCard
-          label="Tanpa Operator"
-          value={formatInt(stats.tanpaOperator)}
-          icon={UserRound}
-          tone="rose"
-        />
-      </div>
+      {kandangQ.isLoading ? (
+        <StatRowSkeleton />
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <StatCard label="Total Kandang" value={formatInt(stats.total)} icon={Warehouse} tone="green" />
+          <StatCard label="Kandang Aktif" value={formatInt(stats.aktif)} icon={Layers} tone="sky" />
+          <StatCard label="Kandang Nonaktif" value={formatInt(stats.nonaktif)} icon={PowerOff} tone="amber" />
+          <StatCard
+            label="Tanpa Operator"
+            value={formatInt(stats.tanpaOperator)}
+            icon={UserRound}
+            tone="rose"
+          />
+        </div>
+      )}
 
       <Card className="p-5">
         <SearchInput

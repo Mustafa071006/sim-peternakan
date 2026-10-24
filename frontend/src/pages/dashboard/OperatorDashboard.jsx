@@ -17,7 +17,7 @@ import { Card } from "../../components/ui/Card";
 import { Badge, TrendBadge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
 import { EmptyState, ErrorState } from "../../components/ui/States";
-import { Skeleton } from "../../components/ui/Skeleton";
+import { OperatorDashboardSkeleton } from "../../components/skeletons/PageSkeletons";
 import { ChartCard } from "../../components/charts/ChartCard";
 import {
   BarSeriesChart,
@@ -47,26 +47,6 @@ const ALERT_STYLE = {
   warning: "bg-amber-soft text-amber-ink",
   info: "bg-sky-soft text-sky-ink",
 };
-
-function LoadingGrid() {
-  return (
-    <div className="space-y-6">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Card key={i} className="p-5">
-            <Skeleton className="h-4 w-24" />
-            <Skeleton className="mt-4 h-7 w-28" />
-            <Skeleton className="mt-4 h-3 w-32" />
-          </Card>
-        ))}
-      </div>
-      <div className="grid gap-4 lg:grid-cols-2">
-        <Skeleton className="h-72 rounded-2xl" />
-        <Skeleton className="h-72 rounded-2xl" />
-      </div>
-    </div>
-  );
-}
 
 export default function OperatorDashboard() {
   const {
@@ -115,7 +95,7 @@ export default function OperatorDashboard() {
     return (
       <div className="space-y-6">
         {header}
-        <LoadingGrid />
+        <OperatorDashboardSkeleton />
       </div>
     );
   }
@@ -152,7 +132,7 @@ export default function OperatorDashboard() {
     return (
       <div className="space-y-6">
         {header}
-        <LoadingGrid />
+        <OperatorDashboardSkeleton />
       </div>
     );
   }

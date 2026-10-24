@@ -16,7 +16,7 @@ export function Pagination({ page, totalPages, totalItems, pageSize, onChange })
   const to = totalItems ? Math.min(page * pageSize, totalItems) : 0;
 
   const btn =
-    "grid size-9 place-items-center rounded-lg border border-line-strong bg-surface text-sm font-medium text-muted transition-colors hover:border-brand-400 hover:text-brand-700 disabled:cursor-not-allowed disabled:opacity-45";
+    "grid size-9 place-items-center rounded-lg border border-line-strong bg-surface text-sm font-medium text-muted transition-[color,border-color,transform] duration-150 hover:border-brand-400 hover:text-brand-700 not-disabled:active:scale-95 disabled:cursor-not-allowed disabled:opacity-45";
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
@@ -49,7 +49,7 @@ export function Pagination({ page, totalPages, totalItems, pageSize, onChange })
               onClick={() => onChange(p)}
               aria-current={p === page ? "page" : undefined}
               className={cn(
-                "grid size-9 place-items-center rounded-lg text-sm font-semibold transition-colors",
+                "grid size-9 place-items-center rounded-lg text-sm font-semibold transition-[color,background-color,border-color,transform] duration-150 active:scale-95",
                 p === page
                   ? "bg-brand-500 text-white"
                   : "border border-line-strong bg-surface text-muted hover:border-brand-400 hover:text-brand-700",

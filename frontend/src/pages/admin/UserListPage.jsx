@@ -25,6 +25,7 @@ import { DropdownMenu } from "../../components/ui/DropdownMenu";
 import { ConfirmDialog } from "../../components/ui/Modal";
 import { toast } from "../../components/ui/toast";
 import { ErrorState } from "../../components/ui/States";
+import { StatRowSkeleton } from "../../components/skeletons/PageSkeletons";
 import { useUserList, useUserMutations } from "../../hooks/useUser";
 import { useDebounce } from "../../hooks/useDebounce";
 import { UserFormModal } from "../../features/users/UserFormModal";
@@ -244,40 +245,44 @@ export default function UserListPage() {
     <div className="space-y-6">
       {header}
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard
-          label="Total User"
-          value={formatInt(stats.total)}
-          icon={UserRound}
-          tone="green"
-          hint={
-            stats.newThisMonth
-              ? `+${stats.newThisMonth} bulan ini`
-              : "tidak ada penambahan bulan ini"
-          }
-        />
-        <StatCard
-          label="Admin"
-          value={formatInt(stats.admin)}
-          icon={ShieldCheck}
-          tone="sky"
-          hint="Memiliki akses penuh"
-        />
-        <StatCard
-          label="Operator"
-          value={formatInt(stats.operator)}
-          icon={UserCog}
-          tone="amber"
-          hint="Mengelola data harian"
-        />
-        <StatCard
-          label="Tidak Aktif"
-          value={formatInt(stats.inactive)}
-          icon={UserX}
-          tone="rose"
-          hint="User nonaktif"
-        />
-      </div>
+      {usersQ.isLoading ? (
+        <StatRowSkeleton />
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <StatCard
+            label="Total User"
+            value={formatInt(stats.total)}
+            icon={UserRound}
+            tone="green"
+            hint={
+              stats.newThisMonth
+                ? `+${stats.newThisMonth} bulan ini`
+                : "tidak ada penambahan bulan ini"
+            }
+          />
+          <StatCard
+            label="Admin"
+            value={formatInt(stats.admin)}
+            icon={ShieldCheck}
+            tone="sky"
+            hint="Memiliki akses penuh"
+          />
+          <StatCard
+            label="Operator"
+            value={formatInt(stats.operator)}
+            icon={UserCog}
+            tone="amber"
+            hint="Mengelola data harian"
+          />
+          <StatCard
+            label="Tidak Aktif"
+            value={formatInt(stats.inactive)}
+            icon={UserX}
+            tone="rose"
+            hint="User nonaktif"
+          />
+        </div>
+      )}
 
       <Card className="p-5">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">

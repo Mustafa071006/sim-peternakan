@@ -16,7 +16,10 @@ import { StatCard } from "../components/ui/StatCard";
 import { Button } from "../components/ui/Button";
 import { DataTable } from "../components/ui/DataTable";
 import { EmptyState, ErrorState } from "../components/ui/States";
-import { Skeleton } from "../components/ui/Skeleton";
+import {
+  LaporanBodySkeleton,
+  LaporanSkeleton,
+} from "../components/skeletons/PageSkeletons";
 import { ChartCard } from "../components/charts/ChartCard";
 import {
   StackedGradeChart,
@@ -38,7 +41,7 @@ import {
 function SectionHeading({ title, subtitle }) {
   return (
     <div>
-      <h2 className="text-base font-semibold text-ink">{title}</h2>
+      <h2 className="text-lg font-semibold text-ink">{title}</h2>
       {subtitle ? <p className="mt-0.5 text-[13px] text-muted">{subtitle}</p> : null}
     </div>
   );
@@ -109,8 +112,7 @@ export default function LaporanPage() {
     return (
       <div className="space-y-6">
         {header}
-        <Skeleton className="h-28 rounded-2xl" />
-        <Skeleton className="h-80 rounded-2xl" />
+        <LaporanSkeleton />
       </div>
     );
   }
@@ -187,7 +189,7 @@ export default function LaporanPage() {
       </Card>
 
       {report.isLoading || !d ? (
-        <Skeleton className="h-96 rounded-2xl" />
+        <LaporanBodySkeleton />
       ) : !d.hasData ? (
         <Card>
           <EmptyState

@@ -81,7 +81,7 @@ export function DropdownMenu({ items = [], align = "right", trigger }) {
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="grid size-8 place-items-center rounded-lg text-faint transition-colors hover:bg-canvas hover:text-ink"
+        className="grid size-8 place-items-center rounded-lg text-faint transition-[color,background-color,transform] duration-150 hover:bg-canvas hover:text-ink active:scale-95"
       >
         {trigger || <MoreVertical className="size-4.5" />}
       </button>
@@ -111,7 +111,7 @@ export function DropdownMenu({ items = [], align = "right", trigger }) {
                     item.onClick?.();
                   }}
                   className={cn(
-                    "flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-[13px] font-medium transition-colors disabled:opacity-40",
+                    "flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-[13px] font-medium transition-colors duration-150 disabled:opacity-40",
                     item.tone === "danger"
                       ? "text-down hover:bg-rose-soft"
                       : "text-ink hover:bg-canvas",

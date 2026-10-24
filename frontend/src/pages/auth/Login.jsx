@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowRight, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { ArrowRight, Eye, EyeOff } from "lucide-react";
 
 import { Button } from "../../components/ui/Button";
 import { TextField } from "../../components/ui/Field";
-import { BrandMark } from "../../components/layout/BrandMark";
 import { useLoginMutation } from "../../hooks/useAuthActions";
 import { getErrorMessage } from "../../lib/http";
 import { loginSchema } from "../../features/auth/loginSchema";
@@ -39,18 +38,14 @@ export default function Login() {
   return (
     <div className="grid min-h-screen lg:grid-cols-[1.05fr_0.95fr]">
       {/* Brand panel */}
-      <div className="relative hidden flex-col justify-between overflow-hidden bg-brand-50 p-12 lg:flex">
+      <div className="relative hidden flex-col overflow-hidden bg-brand-50 p-12 lg:flex">
         <div
           aria-hidden
           className="absolute -bottom-40 -right-40 size-[520px] rounded-full border border-brand-200/60"
           style={{ boxShadow: "0 0 0 48px rgba(172,230,196,0.28), 0 0 0 96px rgba(172,230,196,0.14)" }}
         />
-        <BrandMark />
-        <div className="relative max-w-md">
-          <span className="grid size-12 place-items-center rounded-2xl bg-brand-500 text-white">
-            <ShieldCheck className="size-6" />
-          </span>
-          <h1 className="mt-6 text-[2.4rem] font-bold leading-tight text-ink">
+        <div className="relative my-auto max-w-md">
+          <h1 className="text-[2.4rem] font-bold leading-tight text-ink">
             Operasional kandang, dalam satu layar.
           </h1>
           <p className="mt-4 text-[15px] leading-relaxed text-muted">
@@ -79,10 +74,7 @@ export default function Login() {
           className="w-full max-w-sm"
           noValidate
         >
-          <div className="lg:hidden">
-            <BrandMark />
-          </div>
-          <p className="mt-8 text-[11px] font-semibold uppercase tracking-widest text-brand-600 lg:mt-0">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-600">
             Selamat datang
           </p>
           <h2 className="mt-2 text-2xl font-bold text-ink">Masuk ke workspace</h2>

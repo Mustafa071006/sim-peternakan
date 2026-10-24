@@ -42,7 +42,7 @@ export function Modal({ open, onClose, title, description, size = "md", footer, 
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 grid size-8 place-items-center rounded-lg text-faint transition-colors hover:bg-canvas hover:text-ink"
+          className="absolute right-4 top-4 grid size-8 place-items-center rounded-lg text-faint transition-[color,background-color,transform] duration-150 hover:bg-canvas hover:text-ink active:scale-95"
           aria-label="Tutup"
         >
           <X className="size-4" />

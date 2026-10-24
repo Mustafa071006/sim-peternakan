@@ -90,6 +90,8 @@
     background: var(--color-surface);
     border: 1px solid var(--color-line);
     box-shadow: var(--shadow-card);
+    /* Content swapping in after a skeleton fades instead of popping */
+    animation: sp-fade-in 0.18s ease-out;
   }
 
   .field-input {
@@ -148,6 +150,15 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes sp-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

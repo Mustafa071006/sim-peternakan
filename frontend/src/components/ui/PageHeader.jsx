@@ -40,11 +40,15 @@ export function PageHeader({
         {description ? (
           <p className="mt-1 text-sm text-muted">{description}</p>
         ) : null}
-        {actions ? <div className="mt-4 flex flex-wrap gap-2">{actions}</div> : null}
       </div>
 
       <div className="flex shrink-0 flex-col items-start gap-1.5 sm:items-end">
-        {aside}
+        {aside || actions ? (
+          <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+            {aside}
+            {actions}
+          </div>
+        ) : null}
         {breadcrumb ? (
           <nav className="text-[13px] text-faint">{breadcrumb}</nav>
         ) : null}
